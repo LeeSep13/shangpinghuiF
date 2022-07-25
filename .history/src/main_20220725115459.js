@@ -20,6 +20,10 @@ import router from "@/router";
 // 引入仓库
 import store from "@/store";
 
+// 测试
+import { reqCategoryList } from "@/api";
+reqCategoryList();
+
 Vue.config.productionTip = false;
 
 new Vue({
