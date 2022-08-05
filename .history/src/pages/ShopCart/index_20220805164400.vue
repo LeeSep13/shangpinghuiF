@@ -71,7 +71,7 @@
         <input
           class="chooseAll"
           type="checkbox"
-          :checked="isAllCheck && cartInfoList.length > 0"
+          :checked="isAllCheck"
           @change="updateAllCartChecked"
         />
         <span>全选</span>

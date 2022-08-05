@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-07-25 10:30:43
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-04 18:16:11
+ * @LastEditTime: 2022-08-04 17:40:25
  * @FilePath: \app\src\api\index.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -45,7 +45,3 @@ export const reqCartList = () =>
 // 删除购物产品的接口
 export const reqDeleteCartById = (skuId) =>
   requests({ url: `/cart/deleteCart/${skuId}`, method: "delete" });
-
-// 修改商品的选中状态
-export const reqUpdateCheckedByid = (skuId, isChecked) =>
-  requests({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: "get" });

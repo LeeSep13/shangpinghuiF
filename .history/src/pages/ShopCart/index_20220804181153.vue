@@ -21,7 +21,6 @@
               type="checkbox"
               name="chk_list"
               :checked="cart.isChecked == 1"
-              @change="updateChecked(cart, $event)"
             />
           </li>
           <li class="cart-list-con2">
@@ -68,16 +67,11 @@
     </div>
     <div class="cart-tool">
       <div class="select-all">
-        <input
-          class="chooseAll"
-          type="checkbox"
-          :checked="isAllCheck && cartInfoList.length > 0"
-          @change="updateAllCartChecked"
-        />
+        <input class="chooseAll" type="checkbox" :checked="isAllCheck" />
         <span>全选</span>
       </div>
       <div class="option">
-        <a @click="deleteAllCheckedCart">删除选中的商品</a>
+        <a href="#none">删除选中的商品</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -143,54 +137,13 @@ export default {
         // 再一次获取服务器最新的数据进行展示
         this.getData();
       } catch (error) {}
-    }, 900),
+    }, 800),
 
     // 删除某一个产品的操作
     deleteCartById(cart) {
       try {
         // 如果删除成功再次发请求获取新的数据进行展示
         this.$store.dispatch("deleteCartListBySkuId", cart.skuId);
-        this.getData();
-      } catch (error) {
-        alert(error.message);
-      }
-    },
-
-    // 修改某一个产品的勾选状态
-    async updateChecked(cart, event) {
-      // 带给服务器的参数isChecked，不是布尔值，应该是0 | 1
-      try {
-        // 如果服务器修改成功，再次获取服务器数据（购物车）
-        let isChecked = event.target.checked ? "1" : "0";
-        await this.$store.dispatch("updateCheckedById", {
-          skuId: cart.skuId,
-          isChecked,
-        });
-        this.getData();
-      } catch (error) {
-        alert(error.message);
-      }
-    },
-
-    // 删除全部选中的产品
-    // 这个回调函数没有办法收集到有用数据
-    async deleteAllCheckedCart() {
-      try {
-        // 派发action
-        await this.$store.dispatch("deleteAllCheckedCart");
-        // 再发请求获取购物车列表
-        this.getData();
-      } catch (error) {
-        alert(error.message);
-      }
-    },
-
-    // 修改全部产品的选中状态
-    async updateAllCartChecked(event) {
-      try {
-        let isChecked = event.target.checked ? "1" : "0";
-        // 派发action
-        await this.$store.dispatch("updateAllCartIsChecked", isChecked);
         this.getData();
       } catch (error) {
         alert(error.message);

@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-08-03 16:30:45
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-05 16:42:32
+ * @LastEditTime: 2022-08-04 18:19:30
  * @FilePath: \app\src\store\shopcart.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -42,37 +42,6 @@ const actions = {
     } else {
       return Promise.reject(new Error("faile"));
     }
-  },
-
-  // 删除全部勾选的产品
-  deleteAllCheckedCart({ dispatch, getters }) {
-    // 获取购物车中全部的产品（数组）
-    let PromiseAll = [];
-    getters.cartList.cartInfoList.forEach((item) => {
-      let promise =
-        item.isChecked == 1
-          ? dispatch("deleteCartListBySkuId", item.skuId)
-          : "";
-      PromiseAll.push(promise);
-    });
-    // 只要全部的PromiseAll里的promise都成功，返回结果即为成功
-    // 如果有一个失败，返回结果即为失败
-    return Promise.all(PromiseAll);
-  },
-
-  // 修改全部产品的状态
-  updateAllCartIsChecked({ dispatch, state }, isChecked) {
-    // 数组
-    let promiseAll = [];
-    state.cartList[0].cartInfoList.forEach((item) => {
-      let promise = dispatch("updateCheckedById", {
-        skuId: item.skuId,
-        isChecked,
-      });
-      promiseAll.push(promise);
-    });
-    // 最终返回结果
-    return Promise.all(promiseAll);
   },
 };
 const getters = {
