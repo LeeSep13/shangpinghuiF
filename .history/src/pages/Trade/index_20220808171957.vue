@@ -124,7 +124,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getUserAddress");
-    this.$store.dispatch("getOrderInfo");
+    // this.$store.dispatch("getOrderInfo");
   },
   computed: {
     ...mapState({
@@ -134,7 +134,7 @@ export default {
     // 将来提交订单最终选中地址
     userDefaultAddress() {
       // find:查找数组当中符合条件的元素返回，为最终结果
-      return this.addressInfo.find((item) => item.isDefault == 1) || {};
+      return this.addressInfo.find((item) => item.isDefault == 1);
     },
   },
   methods: {
@@ -166,7 +166,7 @@ export default {
         this.$router.push("/pay?orderId=" + this.orderId);
       } else {
         // 提交订单失败
-        alert(result.message);
+        alert(result.data);
       }
     },
   },

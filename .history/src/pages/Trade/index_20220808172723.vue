@@ -166,7 +166,7 @@ export default {
         this.$router.push("/pay?orderId=" + this.orderId);
       } else {
         // 提交订单失败
-        alert(result.message);
+        alert(result.data);
       }
     },
   },

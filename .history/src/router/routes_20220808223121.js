@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-08-01 16:50:33
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-08 22:45:38
+ * @LastEditTime: 2022-08-08 22:31:21
  * @FilePath: \app\src\router\routes.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -19,9 +19,6 @@ import Trade from "@/pages/Trade";
 import Pay from "@/pages/Pay";
 import PaySuccess from "@/pages/PaySuccess";
 import Center from "@/pages/Center";
-// 引入二级路由组件
-import MyOrder from "@/pages/Center/myOrder";
-import GroupOrder from "@/pages/Center/groupOrder";
 // 配置路由信息
 export default [
   // 重定向，在项目跑起来的时候，访问/,立马让他定向到首页
@@ -85,21 +82,6 @@ export default [
     path: "/center",
     component: Center,
     meta: { show: true },
-    // 二级路由组件
-    children: [
-      {
-        path: "/center",
-        redirect: "/center/myorder",
-      },
-      {
-        path: "myorder",
-        component: MyOrder,
-      },
-      {
-        path: "grouporder",
-        component: GroupOrder,
-      },
-    ],
   },
   {
     path: "/login",

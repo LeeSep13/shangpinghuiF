@@ -118,8 +118,6 @@ export default {
     return {
       // 收集买家的留言信息
       msg: "",
-      // 订单号
-      orderId: "",
     };
   },
   mounted() {
@@ -134,7 +132,7 @@ export default {
     // 将来提交订单最终选中地址
     userDefaultAddress() {
       // find:查找数组当中符合条件的元素返回，为最终结果
-      return this.addressInfo.find((item) => item.isDefault == 1) || {};
+      return this.addressInfo.find((item) => item.isDefault == 1);
     },
   },
   methods: {
@@ -145,29 +143,44 @@ export default {
       address.isDefault = 1;
     },
     // 提交订单
-    async submitOrder() {
+    submitOrder() {
       // 交易编码
       let { tradeNo } = this.orderInfo;
       // 其余的六个参数
       let data = {
-        consignee: this.userDefaultAddress.consignee, // 最终收件人的名字
-        consigneeTel: this.userDefaultAddress.phoneNum, // 最终收件人的手机号
-        deliveryAddress: this.userDefaultAddress.fullAddress, // 收件人的地址
-        paymentWay: "ONLINE", // 支付方式
-        orderComment: this.msg, // 买家的留言信息
-        orderDetailList: this.orderInfo.detailArrayList, // 商品清单
+        consignee: "admin",
+        consigneeTel: "15011111111",
+        deliveryAddress: "北京市昌平区2",
+        paymentWay: "ONLINE",
+        orderComment: "xxx",
+        orderDetailList: [
+          {
+            id: null,
+            orderId: null,
+            skuId: 6,
+            skuName: " Apple iPhone 11 (A2223) 128GB 红色 移动联通电信22",
+            imgUrl:
+              "http://182.92.128.115:8080//rBFUDF6V0JmAG9XGAAGL4LZv5fQ163.png",
+            orderPrice: 4343,
+            skuNum: 2,
+            hasStock: null,
+          },
+          {
+            id: null,
+            orderId: null,
+            skuId: 4,
+            skuName: "Apple iPhone 11 (A2223) 128GB 红色",
+            imgUrl:
+              "http://182.92.128.115:80800/rBFUDF6VzaeANzIOAAL1X4gVWEE035.png",
+            orderPrice: 5999,
+            skuNum: 1,
+            hasStock: null,
+          },
+        ],
       };
+
       // 需要携带参数：tradeNo
-      let result = await this.$API.reqSubmitOrder(tradeNo, data);
-      // 提交订单成功
-      if (result.code == 200) {
-        this.orderId = result.data;
-        // 路由跳转 + 路由传递参数
-        this.$router.push("/pay?orderId=" + this.orderId);
-      } else {
-        // 提交订单失败
-        alert(result.message);
-      }
+      this.$API.reqSubmitOrder();
     },
   },
 };

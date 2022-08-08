@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-07-18 10:46:06
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-08 18:30:50
+ * @LastEditTime: 2022-08-08 18:26:55
  * @FilePath: \app\src\main.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -24,21 +24,20 @@ import Pagination from "@/components/Pagination"; //分页器组件
 Vue.component(TypeNav.name, TypeNav);
 Vue.component(Carousel.name, Carousel);
 Vue.component(Pagination.name, Pagination);
-
+// 引入MockServe.js----mock数据
+import "@/mock/mockServe";
 // 引入swiper样式
 import "swiper/css/swiper.css";
 
+// 统一接口api文件夹里面全部请求函数
+import * as API from "@/api";
 // 注册全局组件
 Vue.use(Icon);
 // ElementUI注册组件的时候，还有一种写法是挂在原型上
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 
-// 引入MockServe.js----mock数据
-import "@/mock/mockServe";
 Vue.config.productionTip = false;
-// 统一接口api文件夹里面全部请求函数
-import * as API from "@/api";
 new Vue({
   render: (h) => h(App),
   // 全局事件总线$bus配置

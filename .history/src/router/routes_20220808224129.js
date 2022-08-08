@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-08-01 16:50:33
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-08 22:45:38
+ * @LastEditTime: 2022-08-08 22:41:29
  * @FilePath: \app\src\router\routes.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -87,10 +87,6 @@ export default [
     meta: { show: true },
     // 二级路由组件
     children: [
-      {
-        path: "/center",
-        redirect: "/center/myorder",
-      },
       {
         path: "myorder",
         component: MyOrder,

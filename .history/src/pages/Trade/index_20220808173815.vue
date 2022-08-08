@@ -157,6 +157,7 @@ export default {
         orderComment: this.msg, // 买家的留言信息
         orderDetailList: this.orderInfo.detailArrayList, // 商品清单
       };
+      console.log(data);
       // 需要携带参数：tradeNo
       let result = await this.$API.reqSubmitOrder(tradeNo, data);
       // 提交订单成功

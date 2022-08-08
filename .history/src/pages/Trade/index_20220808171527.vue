@@ -134,7 +134,7 @@ export default {
     // 将来提交订单最终选中地址
     userDefaultAddress() {
       // find:查找数组当中符合条件的元素返回，为最终结果
-      return this.addressInfo.find((item) => item.isDefault == 1) || {};
+      return this.addressInfo.find((item) => item.isDefault == 1);
     },
   },
   methods: {
@@ -152,7 +152,7 @@ export default {
       let data = {
         consignee: this.userDefaultAddress.consignee, // 最终收件人的名字
         consigneeTel: this.userDefaultAddress.phoneNum, // 最终收件人的手机号
-        deliveryAddress: this.userDefaultAddress.fullAddress, // 收件人的地址
+        // deliveryAddress: this.userDefaultAddress.fullAddress, // 收件人的地址
         paymentWay: "ONLINE", // 支付方式
         orderComment: this.msg, // 买家的留言信息
         orderDetailList: this.orderInfo.detailArrayList, // 商品清单
@@ -166,7 +166,7 @@ export default {
         this.$router.push("/pay?orderId=" + this.orderId);
       } else {
         // 提交订单失败
-        alert(result.message);
+        alert(result.data);
       }
     },
   },

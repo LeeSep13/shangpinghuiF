@@ -2,7 +2,7 @@
  * @Author: Lee && lsh133417@163.com
  * @Date: 2022-07-25 10:30:43
  * @LastEditors: Lee && lsh133417@163.com
- * @LastEditTime: 2022-08-08 19:11:37
+ * @LastEditTime: 2022-08-08 17:44:55
  * @FilePath: \app\src\api\index.js
  * @Description:
  * Copyright (c) 2022 by Lee email: lsh133417@163.com, All Rights Reserved.
@@ -92,7 +92,3 @@ export const reqSubmitOrder = (tradeNo, data) =>
 // 获取支付信息
 export const reqPayInfo = (orderId) =>
   requests({ url: `/payment/weixin/createNative/${orderId}`, method: "get" });
-
-// 获取支付订单状态
-export const reqPayStatus = (orderId) =>
-  requests({ url: `/payment/weixin/queryPayStatus/${orderId}`, method: "get" });

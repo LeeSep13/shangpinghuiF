@@ -118,8 +118,6 @@ export default {
     return {
       // 收集买家的留言信息
       msg: "",
-      // 订单号
-      orderId: "",
     };
   },
   mounted() {
@@ -134,7 +132,7 @@ export default {
     // 将来提交订单最终选中地址
     userDefaultAddress() {
       // find:查找数组当中符合条件的元素返回，为最终结果
-      return this.addressInfo.find((item) => item.isDefault == 1) || {};
+      return this.addressInfo.find((item) => item.isDefault == 1);
     },
   },
   methods: {
@@ -158,16 +156,7 @@ export default {
         orderDetailList: this.orderInfo.detailArrayList, // 商品清单
       };
       // 需要携带参数：tradeNo
-      let result = await this.$API.reqSubmitOrder(tradeNo, data);
-      // 提交订单成功
-      if (result.code == 200) {
-        this.orderId = result.data;
-        // 路由跳转 + 路由传递参数
-        this.$router.push("/pay?orderId=" + this.orderId);
-      } else {
-        // 提交订单失败
-        alert(result.message);
-      }
+      let result = await this.$API.reqSubmitOrder();
     },
   },
 };
